@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using System;
+using Npgsql;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
@@ -23,10 +24,13 @@ namespace BlogProject.Repository
             }
         }
 
-        internal static IEnumerable<dynamic> Query(string sql, params DbParameter[] sqlParameters)
+        internal static List<dynamic> Query(string sql, params DbParameter[] sqlParameters)
         {
+
             using (NpgsqlConnection connection = new NpgsqlConnection(constr))
             {
+
+                var result = new List<dynamic>();
                 connection.Open();
                 using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
                 {
@@ -47,11 +51,13 @@ namespace BlogProject.Repository
                                 {
                                     dic[item] = reader[item];
                                 }
-                                yield return dic;
+                                result.Add(dic);
                             }
                         }
                     }
                 }
+                return result;
+
             }
         }
     }

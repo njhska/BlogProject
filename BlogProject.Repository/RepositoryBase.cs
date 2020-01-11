@@ -52,7 +52,7 @@ namespace BlogProject.Repository
                 NpgsqlDbType = NpgsqlDbType.Text,
                 NpgsqlValue = id
             });
-            if (queryResult != null)
+            if (queryResult.Any())
                 return JsonDataConvert.DeSerializeObject<T>((string)(queryResult.FirstOrDefault().data));
             return null;
         }

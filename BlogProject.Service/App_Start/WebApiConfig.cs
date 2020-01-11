@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using BlogProject.Service.Models;
 namespace BlogProject.Service
 {
     public static class WebApiConfig
@@ -19,6 +19,11 @@ namespace BlogProject.Service
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.MessageHandlers.Add(new AuthenticationMessageHandler());
+            config.MessageHandlers.Add(new ExceptionMessageHandler());
+            config.Filters.Add(new DbExceptionFilterAttribute());
+            config.Filters.Add(new AuthorizeAttribute());
+            config.DependencyResolver = new DependencyResolver();
         }
     }
 }
