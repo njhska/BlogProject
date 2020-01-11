@@ -91,13 +91,13 @@
     <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BlogProject.Domain\BlogProject.Domain.csproj">
-      <Project>{431e18b9-2084-4651-b821-dafcf26f8130}</Project>
-      <Name>BlogProject.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BlogProject.Common\BlogProject.Common.csproj">
       <Project>{f3c69046-2825-4471-af84-7c65386a8a7e}</Project>
       <Name>BlogProject.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogProject.Domain\BlogProject.Domain.csproj">
+      <Project>{431e18b9-2084-4651-b821-dafcf26f8130}</Project>
+      <Name>BlogProject.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

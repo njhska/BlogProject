@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1DFC2DA8-4860-4930-A039-0053D166ED40}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Demo</RootNamespace>
-    <AssemblyName>Demo</AssemblyName>
+    <ProjectGuid>{431E18B9-2084-4651-B821-DAFCF26F8130}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlogProject.Domain</RootNamespace>
+    <AssemblyName>BlogProject.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,25 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Blog.cs" />
+    <Compile Include="IRepository\IBlogRepository.cs" />
+    <Compile Include="LeaveMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlogProject.Common\BlogProject.Common.csproj">
       <Project>{f3c69046-2825-4471-af84-7c65386a8a7e}</Project>
       <Name>BlogProject.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlogProject.Domain\BlogProject.Domain.csproj">
-      <Project>{431e18b9-2084-4651-b821-dafcf26f8130}</Project>
-      <Name>BlogProject.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlogProject.Repository\BlogProject.Repository.csproj">
-      <Project>{1dbb2f57-df2c-4edf-9c80-0093975acba5}</Project>
-      <Name>BlogProject.Repository</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
