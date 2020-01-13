@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BlogProject.Common;
+using System.Linq;
 namespace BlogProject.Domain
 {
     public sealed class Blog:BaseEntity
@@ -17,17 +18,24 @@ namespace BlogProject.Domain
             this.Content = content;
             this.LastUpdateTime = DateTimeOffset.Now;
             this.BlogType = blogType;
-            this.LeaveMessages = new List<LeaveMessage>();
             this.IsActive = true;
         }
-
+        
         public string Title { get; private set; }
         public string Content { get; private set; }
         public int Hit { get; private set; }
         public DateTimeOffset LastUpdateTime { get; private set; }
         public LookupItem BlogType { get; private set; }
-        public List<LeaveMessage> LeaveMessages { get; private set; }
+        public List<LeaveMessage> LeaveMessages
+        {
+            get
+            {
+                return leaveMessages.OrderBy(x=>x.LeaveTime).ToList();
+            }
+        }
         public bool IsActive { get; private set; }
+
+        private List<LeaveMessage> leaveMessages = new List<LeaveMessage>();
 
         public void ChangeTitle(string title)
         {
@@ -56,14 +64,9 @@ namespace BlogProject.Domain
             this.LeaveMessages.Clear();
         }
 
-        public void AddLeaveMessage(string visitorName,string message)
+        public void UpdateLeaveMessages(IList<LeaveMessage> leaveMessages)
         {
-            this.LeaveMessages.Add(new LeaveMessage(visitorName,message));
-        }
-
-        public void RemoveLeaveMessage(string visitorName,DateTimeOffset leaveTime)
-        {
-            this.LeaveMessages.Remove(new LeaveMessage(visitorName,null,leaveTime));
+            this.leaveMessages = leaveMessages.ToList();
         }
 
         public void ChangeActive(bool active)

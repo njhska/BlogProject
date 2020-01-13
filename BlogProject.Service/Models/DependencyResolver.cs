@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace BlogProject.Service.Models
 {
-    public sealed class DependencyResolver : IDependencyResolver
+    public class DependencyResolver : IDependencyResolver
     {
         public IDependencyScope BeginScope()
         {
